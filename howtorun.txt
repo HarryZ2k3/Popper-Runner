@@ -1,0 +1,81 @@
+=========================
+Popper Runner Instructions
+=========================
+
+This script runs the Popper ILP system with your chosen background knowledge, bias, and examples.
+
+-------------------------
+1. REQUIREMENTS
+-------------------------
+- Python 3.7 or higher (check with: python3 --version)
+- Popper installed and accessible at:
+  ~/popper/popper_ilp/popper.py
+  (Edit POPPER_PATH in run.py if installed elsewhere)
+
+-------------------------
+2. BASIC USAGE
+-------------------------
+Run the script with:
+
+    python3 run.py --bk bk.pl --bias bias.pl --exs exs.pl
+
+Example:
+
+    python3 run.py --bk examples/bk.pl --bias examples/bias.pl --exs examples/exs.pl
+
+-------------------------
+3. AVAILABLE SETTINGS
+-------------------------
+
+--bk <path>        Path to background knowledge file (bk.pl)
+--bias <path>      Path to bias file (bias.pl)
+--exs <path>       Path to examples file (exs.pl)
+
+--timeout <time>   Maximum runtime (default: 60s). Example: 120s
+
+--output <file>    Save learned hypotheses and evaluation metrics to this file.
+
+--keep-temp        Keep the temporary folder ("popper_tmp") after execution.
+                   Useful for debugging.
+
+--popper-args      Pass extra arguments directly to Popper.
+                   Example:
+                      --popper-args --max_clauses 3 --max_body 2
+
+-------------------------
+4. EXAMPLES
+-------------------------
+
+1) **Basic Run:**
+    python3 run.py --bk ruleset/bk.pl --bias ruleset/bias.pl --exs ruleset/exs.pl
+
+2) **Change Timeout:**
+    python3 run.py --bk ruleset/bk.pl --bias ruleset/bias.pl --exs ruleset/exs.pl --timeout 120s
+
+3) **Save Output to File:**
+    python3 run.py --bk ruleset/bk.pl --bias ruleset/bias.pl --exs ruleset/exs.pl --output learned.txt
+
+4) **Keep Temporary Folder for Debugging:**
+    python3 run.py --bk ruleset/bk.pl --bias ruleset/bias.pl --exs ruleset/exs.pl --keep-temp
+
+5) **Pass Extra Popper Parameters:**
+    python3 run.py --bk ruleset/bk.pl --bias ruleset/bias.pl --exs ruleset/exs.pl \
+    --popper-args --max_clauses 3 --max_body 2
+
+-------------------------
+5. OUTPUT
+-------------------------
+- Live Popper output is printed directly to the console.
+- If solutions are found:
+  - Learned hypotheses are printed.
+  - Evaluation metrics (Precision, Recall, F1) are printed.
+- If saved with --output, results are written to the file.
+
+-------------------------
+6. NOTES
+-------------------------
+- If Popper times out, you will see: "[ERROR] Popper timed out after <time>"
+- Use --keep-temp to inspect intermediate Popper files in "popper_tmp".
+- Modify "POPPER_PATH" in run.py if Popper is installed elsewhere.
+
+=========================
