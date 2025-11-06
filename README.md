@@ -152,7 +152,7 @@ python3 run.py
 
 ## 👨‍💻 **Author**
 
-Developed by **\[Your Name]**
+Developed by **HarryZ**
 For academic and research use.
 
 ---
